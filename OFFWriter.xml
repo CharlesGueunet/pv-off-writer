@@ -1,0 +1,61 @@
+<ServerManagerConfiguration>
+   <ProxyGroup name="filters">
+      <SourceProxy name="OFFWriter" class="OFFWriter" label="OFFWriter">
+         <Documentation
+            long_help="Save a VTK Unstructured Grig into an Object File Format file."
+            short_help="Save VTU into .off">
+         </Documentation>
+
+         <InputProperty
+            name="Input"
+            command="SetInputConnection">
+            <ProxyGroupDomain name="groups">
+               <Group name="sources"/>
+               <Group name="filters"/>
+            </ProxyGroupDomain>
+            <DataTypeDomain name="input_type">
+               <DataType value="vtkUnstructuredGrid"/>
+            </DataTypeDomain>
+         </InputProperty>
+
+         <StringVectorProperty
+            name="FileName"
+            command="SetFileName"
+            number_of_elements="1">
+            <FileListDomain name="files"/>
+            <Documentation>
+               The path / name of the output file.
+            </Documentation>
+            <Hints>
+               <UseDirectoryName/>
+               <AcceptAnyFile/>
+            </Hints>
+         </StringVectorProperty>
+
+            <StringVectorProperty
+                name="Scalar Field"
+                command="SetScalarField"
+                number_of_elements="1"
+                animateable="0"
+                label="Scalar Field"
+                >
+                <ArrayListDomain
+                    name="array_list"
+                    default_values="0">
+                    <RequiredProperties>
+                        <Property name="Input" function="Input" />
+                    </RequiredProperties>
+                </ArrayListDomain>
+                <Documentation>
+                    Select the scalar field to save.
+                </Documentation>
+            </StringVectorProperty>
+
+         <Hints>
+            <ShowInMenu category="Common" />
+         </Hints>
+
+      </SourceProxy>
+   </ProxyGroup>
+</ServerManagerConfiguration>
+
